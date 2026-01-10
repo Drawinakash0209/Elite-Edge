@@ -1,11 +1,47 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Building2, Users2, LineChart, Globe, ArrowUpRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { Building2, Users2, LineChart, Globe, ArrowUpRight, X, Check } from "lucide-react";
+
+const serviceDetails = {
+  facility: {
+    title: "Facility Management",
+    subtitle: "Complete Operational Oversight",
+    description: "We provide end-to-end facility management services that ensure your buildings operate at peak efficiency, safety, and comfort. From routine maintenance to complex energy management systems, we handle it all.",
+    features: ["Hard & Soft Services Integration", "Preventive & Corrective Maintenance", "Energy & Sustainability Management", "24/7 Helpdesk & Emergency Response"]
+  },
+  workforce: {
+    title: "Workforce & Staffing",
+    subtitle: "Powering Your Business with People",
+    description: "Our staffing solutions are designed to provide you with the right talent at the right time. We rigorously vet and train our personnel to ensure they meet the highest professional standards.",
+    features: ["Specialized Recruitment", "On-site Personnel Management", "Continuous Training Programs", "Compliance & Payroll Administration"]
+  },
+  project: {
+    title: "Project Management",
+    subtitle: "From Concept to Completion",
+    description: "Our project management team ensures that your initiatives are delivered on time, within budget, and to the desired quality standards. We use advanced methodologies to mitigate risks and optimize resources.",
+    features: ["Strategic Planning & Scheduling", "Cost Estimation & Budget Control", "Risk Management & Mitigation", "Quality Assurance & Control"]
+  },
+  import: {
+    title: "Import & Export",
+    subtitle: "Connecting Global Markets",
+    description: "We bridge the gap between international suppliers and local markets, ensuring a smooth flow of goods. Our expertise in logistics and regulations guarantees hassle-free operations.",
+    features: ["Global Sourcing Network", "Customs Clearance Expertise", "Supply Chain Optimization", "Warehousing & Distribution"]
+  }
+};
 
 export default function Services() {
+  const [selectedService, setSelectedService] = useState<typeof serviceDetails.facility | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
-    <section id="services" className="py-12 md:py-24 bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
+    <section id="services" className="py-12 md:py-24 bg-slate-50 dark:bg-slate-900 transition-colors duration-300 relative">
       <div className="container mx-auto px-6">
         <div className="mb-20 flex flex-col md:flex-row items-end justify-between gap-6">
           <div className="md:w-2/3">
@@ -47,7 +83,8 @@ export default function Services() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="group md:col-span-2 relative bg-white dark:bg-slate-800 rounded-[2.5rem] p-10 overflow-hidden shadow-[0_10px_40px_-10px_rgba(6,182,212,0.2)] dark:shadow-[0_10px_40px_-10px_rgba(6,182,212,0.4)] hover:shadow-cyan-500/30 transition-all duration-500 border border-cyan-200 dark:border-cyan-800"
+            onClick={() => setSelectedService(serviceDetails.facility)}
+            className="group md:col-span-2 relative bg-white dark:bg-slate-800 rounded-[2.5rem] p-10 overflow-hidden shadow-[0_10px_40px_-10px_rgba(6,182,212,0.2)] dark:shadow-[0_10px_40px_-10px_rgba(6,182,212,0.4)] hover:shadow-cyan-500/30 transition-all duration-500 border border-cyan-200 dark:border-cyan-800 cursor-pointer"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-50 dark:bg-cyan-900/10 rounded-full blur-3xl -mr-16 -mt-16 transition-transform duration-700 group-hover:scale-150" />
             
@@ -80,7 +117,8 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
             viewport={{ once: true }}
-            className="group md:col-span-1 relative bg-white dark:bg-slate-800 rounded-[2.5rem] p-10 overflow-hidden hover:shadow-2xl hover:shadow-blue-600/10 transition-all duration-500 border border-slate-100 dark:border-slate-700 flex flex-col justify-between"
+            onClick={() => setSelectedService(serviceDetails.workforce)}
+            className="group md:col-span-1 relative bg-white dark:bg-slate-800 rounded-[2.5rem] p-10 overflow-hidden hover:shadow-2xl hover:shadow-blue-600/10 transition-all duration-500 border border-slate-100 dark:border-slate-700 flex flex-col justify-between cursor-pointer"
           >
              <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-blue-50 dark:from-blue-900/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
              
@@ -104,7 +142,8 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
             viewport={{ once: true }}
-            className="group md:col-span-1 relative bg-white dark:bg-slate-800 rounded-[2.5rem] p-10 overflow-hidden hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-500 border border-slate-100 dark:border-slate-700 flex flex-col justify-between"
+            onClick={() => setSelectedService(serviceDetails.project)}
+            className="group md:col-span-1 relative bg-white dark:bg-slate-800 rounded-[2.5rem] p-10 overflow-hidden hover:shadow-2xl hover:shadow-indigo-500/10 transition-all duration-500 border border-slate-100 dark:border-slate-700 flex flex-col justify-between cursor-pointer"
           >
              <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-50 dark:bg-indigo-900/10 rounded-full blur-2xl -mr-10 -mt-10 transition-transform duration-500 group-hover:scale-125" />
              
@@ -128,7 +167,8 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
             viewport={{ once: true }}
-            className="group md:col-span-2 relative bg-slate-900 rounded-[2.5rem] p-10 overflow-hidden hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-500 text-white"
+            onClick={() => setSelectedService(serviceDetails.import)}
+            className="group md:col-span-2 relative bg-slate-900 rounded-[2.5rem] p-10 overflow-hidden hover:shadow-2xl hover:shadow-sky-500/20 transition-all duration-500 text-white cursor-pointer"
           >
             {/* Cool Grid Pattern Background for tech feel */}
             <div className="absolute inset-0 opacity-20" 
@@ -161,6 +201,78 @@ export default function Services() {
 
         </div>
       </div>
+
+      {/* Interactive Modal Portal */}
+      {mounted && createPortal(
+        <AnimatePresence>
+          {selectedService && (
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setSelectedService(null)}
+                className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+              />
+              
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                className="relative w-full max-w-3xl bg-white dark:bg-slate-900 rounded-[2rem] shadow-2xl overflow-hidden border border-cyan-100 dark:border-cyan-900"
+              >
+                {/* Decorative Header Background */}
+                <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-r from-cyan-500 to-blue-600 opacity-10" />
+                <div className="absolute -top-10 -right-10 w-40 h-40 bg-cyan-400/20 rounded-full blur-3xl z-0" />
+
+                <div className="relative p-8 md:p-10 z-10">
+                  <button 
+                    onClick={() => setSelectedService(null)}
+                    className="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-500 dark:text-slate-400 z-50"
+                  >
+                    <X className="w-6 h-6" />
+                  </button>
+
+                  <h3 className="text-3xl font-bold font-outfit text-slate-900 dark:text-white mb-2">
+                    {selectedService.title}
+                  </h3>
+                  <p className="text-cyan-600 dark:text-cyan-400 font-medium mb-6">
+                    {selectedService.subtitle}
+                  </p>
+                  
+                  <p className="text-slate-600 dark:text-slate-400 text-lg mb-8 leading-relaxed">
+                    {selectedService.description}
+                  </p>
+
+                  <div className="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-6 border border-slate-100 dark:border-slate-800">
+                    <h4 className="font-bold text-slate-900 dark:text-white mb-4">Key Features</h4>
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      {selectedService.features.map((feature, i) => (
+                        <div key={i} className="flex items-start gap-3">
+                          <div className="w-5 h-5 rounded-full bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center text-cyan-600 dark:text-cyan-400 shrink-0 mt-0.5">
+                              <Check className="w-3 h-3" />
+                          </div>
+                          <span className="text-slate-700 dark:text-slate-300 text-sm font-medium">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 flex justify-end">
+                      <button 
+                        onClick={() => setSelectedService(null)}
+                        className="px-6 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold rounded-xl hover:shadow-lg transition-all"
+                      >
+                        Close
+                      </button>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </section>
   );
 }

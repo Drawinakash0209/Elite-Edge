@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { submitToWeb3Forms } from "@/utils/web3forms";
 
 export default function Contact() {
   return (
@@ -48,29 +49,64 @@ export default function Contact() {
             viewport={{ once: true }}
             className="bg-slate-50 dark:bg-slate-900 p-8 rounded-3xl border border-cyan-100 dark:border-cyan-900 shadow-[0_0_40px_-15px_rgba(6,182,212,0.2)] dark:shadow-[0_0_40px_-15px_rgba(6,182,212,0.4)] transition-colors duration-300"
           >
-            <form className="space-y-4">
+            <form onSubmit={async (e) => {
+              e.preventDefault();
+              const formData = new FormData(e.currentTarget);
+              const data = {
+                name: `${formData.get('firstName')} ${formData.get('lastName')}`,
+                email: formData.get('email'),
+                message: formData.get('message'),
+                subject: "New Contact Form Submission - Elite Edge"
+              };
+              
+              const btn = e.currentTarget.querySelector('button');
+              if (btn) {
+                const originalText = btn.innerText;
+                btn.innerText = 'Sending...';
+                btn.disabled = true;
+                
+                const result = await submitToWeb3Forms(data);
+                
+                if (result.success) {
+                  btn.innerText = 'Message Sent!';
+                  btn.classList.add('bg-green-500');
+                  (e.target as HTMLFormElement).reset();
+                  setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                    btn.classList.remove('bg-green-500');
+                  }, 3000);
+                } else {
+                  btn.innerText = 'Error. Try Again.';
+                  btn.disabled = false;
+                  setTimeout(() => {
+                     btn.innerText = originalText;
+                  }, 3000);
+                }
+              }
+            }} className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-slate-700 dark:text-slate-300">First name</label>
-                  <input type="text" className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 focus:outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 transition-colors" placeholder="John" />
+                  <input name="firstName" required type="text" className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 focus:outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 transition-colors" placeholder="John" />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Last name</label>
-                  <input type="text" className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 focus:outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 transition-colors" placeholder="Doe" />
+                  <input name="lastName" required type="text" className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 focus:outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 transition-colors" placeholder="Doe" />
                 </div>
               </div>
               
               <div className="space-y-2">
                 <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Email</label>
-                <input type="email" className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 focus:outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 transition-colors" placeholder="john@company.com" />
+                <input name="email" required type="email" className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 focus:outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 transition-colors" placeholder="john@company.com" />
               </div>
 
               <div className="space-y-2">
                 <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Message</label>
-                <textarea className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 focus:outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 h-32 resize-none transition-colors" placeholder="We are confident that..."></textarea>
+                <textarea name="message" required className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 focus:outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 h-32 resize-none transition-colors" placeholder="We are confident that..."></textarea>
               </div>
 
-              <button className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-bold rounded-xl transition-all shadow-lg shadow-cyan-500/30">
+              <button type="submit" className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-bold rounded-xl transition-all shadow-lg shadow-cyan-500/30 disabled:opacity-70 disabled:cursor-not-allowed">
                 Send Message
               </button>
             </form>
