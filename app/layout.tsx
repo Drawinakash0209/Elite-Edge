@@ -15,7 +15,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Elite Edge for Facility Management Services W.L.L.",
+    default: "Elite Edge",
     template: "%s | Elite Edge"
   },
   description: "Elite Edge provides premium facility management, staffing solutions, and import/export services in Qatar. German reliability with local excellence.",
