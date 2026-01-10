@@ -1,0 +1,87 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { Mail, MapPin, Phone } from "lucide-react";
+
+export default function Contact() {
+  return (
+    <section id="contact" className="bg-white dark:bg-slate-950 py-12 md:py-24 border-t border-slate-100 dark:border-slate-800 transition-colors duration-300">
+      <div className="container mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl font-bold font-outfit mb-6 text-slate-900 dark:text-white">Let's Elevate Your Business</h2>
+            <p className="text-slate-600 dark:text-slate-400 text-lg mb-10 max-w-md">
+              Reach out to our team to discover how Elite Edge can elevate your facility management and business operations.
+            </p>
+            
+            <div className="space-y-6">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-cyan-50 dark:bg-cyan-900/20 flex items-center justify-center text-cyan-600 dark:text-cyan-400 border border-cyan-100 dark:border-cyan-800">
+                  <MapPin className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-slate-900 dark:text-white">Location</h4>
+                  <p className="text-slate-500 dark:text-slate-400">Doha, Qatar</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-800">
+                  <Phone className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-slate-900 dark:text-white">Availability</h4>
+                  <p className="text-slate-500 dark:text-slate-400">24/7 Service Support</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="bg-slate-50 dark:bg-slate-900 p-8 rounded-3xl border border-cyan-100 dark:border-cyan-900 shadow-[0_0_40px_-15px_rgba(6,182,212,0.2)] dark:shadow-[0_0_40px_-15px_rgba(6,182,212,0.4)] transition-colors duration-300"
+          >
+            <form className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-slate-700 dark:text-slate-300">First name</label>
+                  <input type="text" className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 focus:outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 transition-colors" placeholder="John" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Last name</label>
+                  <input type="text" className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 focus:outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 transition-colors" placeholder="Doe" />
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Email</label>
+                <input type="email" className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 focus:outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 transition-colors" placeholder="john@company.com" />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-700 dark:text-slate-300">Message</label>
+                <textarea className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 focus:outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 h-32 resize-none transition-colors" placeholder="We are confident that..."></textarea>
+              </div>
+
+              <button className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-bold rounded-xl transition-all shadow-lg shadow-cyan-500/30">
+                Send Message
+              </button>
+            </form>
+          </motion.div>
+
+        </div>
+        
+        <div className="mt-24 pt-8 border-t border-slate-100 dark:border-slate-800 text-center text-slate-400 dark:text-slate-600 text-sm transition-colors duration-300">
+          <p>&copy; {new Date().getFullYear()} Elite Edge for Facility Management Services W.L.L. All rights reserved.</p>
+        </div>
+      </div>
+    </section>
+  );
+}
