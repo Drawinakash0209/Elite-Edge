@@ -1,14 +1,48 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
+import { useState } from "react";
 import { submitToWeb3Forms } from "@/utils/web3forms";
+import { FloatingPaths } from "@/components/ui/background-paths";
 
 export default function Contact() {
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setFormStatus('submitting');
+    
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: `${formData.get('firstName')} ${formData.get('lastName')}`,
+      email: formData.get('email'),
+      message: formData.get('message'),
+      subject: "New Contact Form Submission - Elite Edge"
+    };
+
+    const success = await submitToWeb3Forms(data);
+
+    if (success) {
+      setFormStatus('success');
+      (e.target as HTMLFormElement).reset();
+    } else {
+      setFormStatus('error');
+    }
+    
+    setTimeout(() => setFormStatus('idle'), 5000);
+  }
+
   return (
-    <section id="contact" className="bg-white dark:bg-slate-950 py-12 md:py-24 border-t border-slate-100 dark:border-slate-800 transition-colors duration-300">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+    <section id="contact" className="py-24 bg-white dark:bg-slate-950 transition-colors duration-300 relative overflow-hidden">
+      
+      {/* Background Paths Animation */}
+      <div className="absolute inset-0 z-0 opacity-30">
+          <FloatingPaths position={-1} />
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 border-t border-slate-100 dark:border-slate-800 pt-12 md:pt-24">
           
           <motion.div
             initial={{ opacity: 0, x: -30 }}
