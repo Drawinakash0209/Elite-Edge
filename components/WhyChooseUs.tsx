@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, CloudLightning, ShieldCheck, Globe2, X, ArrowRight } from "lucide-react";
+import { FloatingPaths } from "@/components/ui/background-paths";
 
 export default function WhyChooseUs() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,6 +16,12 @@ export default function WhyChooseUs() {
 
   return (
     <section id="why-us" className="py-12 md:py-24 bg-white dark:bg-slate-950 overflow-hidden transition-colors duration-300 relative">
+      
+      {/* Background Paths Animation */}
+      <div className="absolute inset-0 z-0 opacity-40">
+          <FloatingPaths position={1} />
+      </div>
+
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center gap-16">
           
