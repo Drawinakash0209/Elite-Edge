@@ -5,6 +5,8 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { FloatingPaths } from "@/components/ui/background-paths";
 import { Button } from "@/components/ui/button";
+import { FloatingPaths } from "@/components/ui/background-paths";
+import { Button } from "@/components/ui/button";
 
 export default function Hero() {
   return (
