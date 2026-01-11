@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Building2, Users2, LineChart, Globe, ArrowUpRight, X, Check } from "lucide-react";
+import { GradientButton } from "@/components/ui/gradient-button";
 
 const serviceDetails = {
   facility: {
@@ -250,12 +251,13 @@ export default function Services() {
                   </div>
 
                   <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 flex justify-end">
-                      <button 
+                      <GradientButton 
+                        variant="variant"
                         onClick={() => setSelectedService(null)}
-                        className="px-6 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold rounded-xl hover:shadow-lg transition-all"
+                        className="min-w-[120px]"
                       >
                         Close
-                      </button>
+                      </GradientButton>
                   </div>
                 </div>
               </motion.div>

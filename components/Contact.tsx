@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { submitToWeb3Forms } from "@/utils/web3forms";
-import { FloatingPaths } from "@/components/ui/background-paths";
+import { GradientButton } from "@/components/ui/gradient-button";
 
 export default function Contact() {
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -36,10 +36,7 @@ export default function Contact() {
   return (
     <section id="contact" className="py-24 bg-white dark:bg-slate-950 transition-colors duration-300 relative overflow-hidden">
       
-      {/* Background Paths Animation */}
-      <div className="absolute inset-0 z-0 opacity-30 pointer-events-none">
-          <FloatingPaths position={-1} />
-      </div>
+
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 border-t border-slate-100 dark:border-slate-800 pt-12 md:pt-24">
@@ -140,9 +137,9 @@ export default function Contact() {
                 <textarea name="message" required className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 focus:outline-none text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-600 h-32 resize-none transition-colors" placeholder="We are confident that..."></textarea>
               </div>
 
-              <button type="submit" className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-bold rounded-xl transition-all shadow-lg shadow-cyan-500/30 disabled:opacity-70 disabled:cursor-not-allowed">
+              <GradientButton type="submit" className="w-full">
                 Send Message
-              </button>
+              </GradientButton>
             </form>
           </motion.div>
 

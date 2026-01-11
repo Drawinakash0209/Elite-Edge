@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, CloudLightning, ShieldCheck, Globe2, X, ArrowRight } from "lucide-react";
-import { FloatingPaths } from "@/components/ui/background-paths";
+import { GradientButton } from "@/components/ui/gradient-button";
 
 export default function WhyChooseUs() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,10 +17,7 @@ export default function WhyChooseUs() {
   return (
     <section id="why-us" className="py-12 md:py-24 bg-white dark:bg-slate-950 overflow-hidden transition-colors duration-300 relative">
       
-      {/* Background Paths Animation */}
-      <div className="absolute inset-0 z-0 opacity-40">
-          <FloatingPaths position={1} />
-      </div>
+
 
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row items-center gap-16">
@@ -56,12 +53,12 @@ export default function WhyChooseUs() {
                     </div>
                 </div>
 
-                <button 
+                <GradientButton 
                   onClick={() => setIsModalOpen(true)}
-                  className="group flex items-center gap-2 text-cyan-600 dark:text-cyan-400 font-semibold hover:gap-4 transition-all"
+                  className="w-full sm:w-auto min-w-[160px]"
                 >
-                  Learn More <ArrowRight className="w-5 h-5 group-hover:text-cyan-500" />
-                </button>
+                  Learn More <ArrowRight className="ml-2 w-5 h-5" />
+                </GradientButton>
               </div>
             </motion.div>
           </div>
@@ -165,12 +162,13 @@ export default function WhyChooseUs() {
                   </div>
 
                   <div className="mt-8 pt-8 border-t border-slate-100 dark:border-slate-800 flex justify-end">
-                      <button 
+                      <GradientButton 
+                        variant="variant"
                         onClick={() => setIsModalOpen(false)}
-                        className="px-6 py-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold rounded-xl hover:shadow-lg transition-all"
+                        className="min-w-[140px]"
                       >
                         Close Details
-                      </button>
+                      </GradientButton>
                   </div>
                 </div>
               </motion.div>

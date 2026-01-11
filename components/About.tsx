@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Award, Target, Users, Zap, X, Check, ArrowRight } from "lucide-react";
+import { GradientButton } from "@/components/ui/gradient-button";
 import Image from "next/image";
 
 const features = [
@@ -60,12 +61,12 @@ export default function About() {
               We separate ourselves by combining international service standards with deep local market insights, ensuring reliability and quality in every project we undertake. Innovation and precision are at the core of our operations.
             </p>
             
-            <button 
+            <GradientButton 
               onClick={() => setIsModalOpen(true)}
-              className="group px-8 py-3 rounded-full border border-cyan-500 text-cyan-600 font-semibold hover:bg-cyan-50 dark:hover:bg-cyan-900/20 transition-all flex items-center gap-2"
+              className="group min-w-[160px]"
             >
-              Learn More <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
+              Learn More <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </GradientButton>
           </motion.div>
 
           <div className="lg:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -191,12 +192,13 @@ export default function About() {
                   </div>
 
                   <div className="mt-10 pt-6 border-t border-slate-100 dark:border-slate-800 flex justify-end">
-                      <button 
+                      <GradientButton 
+                        variant="variant"
                         onClick={() => setIsModalOpen(false)}
-                        className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold rounded-xl shadow-lg shadow-cyan-500/20 transition-all"
+                        className="min-w-[140px]"
                       >
                         Close
-                      </button>
+                      </GradientButton>
                   </div>
                 </div>
               </motion.div>
