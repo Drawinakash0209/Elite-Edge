@@ -7,11 +7,14 @@ import FloatingNav from "@/components/FloatingNav";
 import MarqueeBanner from "@/components/MarqueeBanner";
 import ParallaxBanner from "@/components/ParallaxBanner";
 
+import ImpactMetrics from "@/components/ImpactMetrics";
+
 export default function Home() {
   return (
     <main className="flex flex-col w-full transition-colors duration-300">
       <FloatingNav />
       <Hero />
+      <ImpactMetrics />
       <MarqueeBanner />
       <About />
       <Services />

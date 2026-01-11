@@ -9,6 +9,7 @@ export default function Hero() {
     <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-slate-950 text-slate-900 dark:text-white rounded-b-[5rem] border-b-4 border-cyan-500 shadow-[0_20px_60px_-15px_rgba(6,182,212,0.3)] z-10 transition-colors duration-300">
       {/* Background Gradient/Overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-white via-slate-50 to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 z-0 transition-colors duration-300" />
+      <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] dark:opacity-[0.05] z-0 pointer-events-none" />
       
       {/* Animated Abstract Shapes for premium feel - Neon Blue/Cyan */}
       <motion.div 
@@ -28,9 +29,15 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <span className="inline-block py-1 px-3 rounded-full bg-cyan-50 border border-cyan-100 text-sm font-medium tracking-wide mb-6 text-cyan-600">
-            Welcome to Elite Edge
-          </span>
+          <div className="flex justify-center items-center gap-3 mb-6">
+            <span className="inline-block py-1 px-3 rounded-full bg-cyan-50 dark:bg-cyan-900/30 border border-cyan-100 dark:border-cyan-800 text-sm font-medium tracking-wide text-cyan-600 dark:text-cyan-400">
+              Welcome to Elite Edge
+            </span>
+            <span className="inline-block py-1 px-3 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm font-medium tracking-wide text-slate-500 dark:text-slate-400">
+              ISO 9001:2015 Standards
+            </span>
+          </div>
+
           <h1 className="text-5xl md:text-7xl font-bold font-outfit tracking-tight mb-6 leading-tight text-slate-900 dark:text-white transition-colors duration-300">
             International Expertise. <br className="hidden md:block" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600">
