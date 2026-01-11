@@ -37,7 +37,7 @@ export default function Contact() {
     <section id="contact" className="py-24 bg-white dark:bg-slate-950 transition-colors duration-300 relative overflow-hidden">
       
       {/* Background Paths Animation */}
-      <div className="absolute inset-0 z-0 opacity-30">
+      <div className="absolute inset-0 z-0 opacity-30 pointer-events-none">
           <FloatingPaths position={-1} />
       </div>
 

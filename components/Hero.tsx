@@ -3,19 +3,16 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { FloatingPaths } from "@/components/ui/background-paths";
-import { Button } from "@/components/ui/button";
-import { FloatingPaths } from "@/components/ui/background-paths";
+import { ShaderAnimation } from "@/components/ui/shader-animation";
 import { Button } from "@/components/ui/button";
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-slate-950 text-slate-900 dark:text-white z-10 transition-colors duration-300">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black text-white z-10 transition-colors duration-300">
       
-      {/* Background Paths Animation */}
-      <div className="absolute inset-0">
-          <FloatingPaths position={1} />
-          <FloatingPaths position={-1} />
+      {/* Background Shader Animation */}
+      <div className="absolute inset-0 z-0">
+          <ShaderAnimation />
       </div>
 
       <div className="container mx-auto px-6 relative z-10 text-center">
