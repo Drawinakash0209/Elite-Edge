@@ -100,11 +100,11 @@ export default function FloatingNav() {
             )}
             
             <button 
-                onClick={() => setIsQuoteOpen(true)}
-                className="px-3 sm:px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full text-white text-xs sm:text-sm font-bold shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 transition-shadow ml-1 shrink-0 whitespace-nowrap"
-            >
+            onClick={() => setIsQuoteOpen(true)}
+            className="hidden md:block px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg font-semibold text-sm transition-all shadow-lg shadow-slate-900/20"
+          >
             Get Quote
-            </button>
+          </button>
         </motion.div>
         </div>
 
@@ -185,7 +185,7 @@ export default function FloatingNav() {
 
                                 <button 
                                     disabled={formStatus === 'submitting'}
-                                    className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold rounded-xl shadow-lg shadow-cyan-500/20 transition-all disabled:opacity-70 disabled:cursor-not-allowed mt-2"
+                                    className="w-full py-4 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl shadow-lg shadow-slate-900/20 transition-all disabled:opacity-70 disabled:cursor-not-allowed mt-2"
                                 >
                                     {formStatus === 'submitting' ? 'Sending...' : 'Submit Request'}
                                 </button>

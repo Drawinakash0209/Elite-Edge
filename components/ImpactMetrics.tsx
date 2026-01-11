@@ -47,7 +47,7 @@ export default function ImpactMetrics() {
               viewport={{ once: true }}
               className="flex flex-col items-center text-center group"
             >
-              <div className="w-12 h-12 rounded-2xl bg-cyan-50 dark:bg-cyan-900/20 flex items-center justify-center text-cyan-600 dark:text-cyan-400 mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-cyan-500/10">
+              <div className="w-12 h-12 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-900 dark:text-white mb-4 group-hover:scale-110 transition-transform duration-300 shadow-md">
                 {metric.icon}
               </div>
               <h3 className="text-3xl md:text-4xl font-bold font-outfit text-slate-900 dark:text-white mb-1">
