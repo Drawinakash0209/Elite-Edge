@@ -23,7 +23,7 @@ export default function ParallaxBanner() {
         <div 
             className="absolute inset-0 bg-cover bg-center"
             style={{ 
-                backgroundImage: 'url("https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2301&auto=format&fit=crop")',
+                backgroundImage: 'url("/qatar1.jpg")',
                 filter: 'brightness(0.4) contrast(1.2)'
             }} 
         />

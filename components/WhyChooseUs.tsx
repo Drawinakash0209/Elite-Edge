@@ -30,6 +30,9 @@ export default function WhyChooseUs() {
               viewport={{ once: true }}
               className="relative"
             >
+              <div className="absolute -top-10 -left-10 w-full h-full z-0 opacity-20">
+                <img src="/qatar3.jpg" alt="Qatar Skyline" className="w-full h-full object-cover rounded-3xl blur-sm" />
+              </div>
               <div className="absolute -top-10 -left-10 w-40 h-40 bg-cyan-300/30 rounded-full blur-3xl" />
               <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-300/30 rounded-full blur-3xl" />
               <div className="relative bg-white dark:bg-slate-900 p-10 rounded-3xl shadow-[0_0_40px_-10px_rgba(6,182,212,0.15)] dark:shadow-[0_0_40px_-10px_rgba(6,182,212,0.3)] border border-cyan-100 dark:border-cyan-900/50 transition-colors duration-300">

@@ -5,6 +5,7 @@ import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { submitToWeb3Forms } from "@/utils/web3forms";
 import { GradientButton } from "@/components/ui/gradient-button";
+import { FloatingPaths } from "@/components/ui/background-paths";
 
 export default function Contact() {
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -38,6 +39,11 @@ export default function Contact() {
       
 
 
+      <div className="absolute inset-0 z-0 opacity-40 pointer-events-none overflow-hidden">
+          <FloatingPaths position={1} />
+          <FloatingPaths position={-1} />
+      </div>
+
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 border-t border-slate-100 dark:border-slate-800 pt-12 md:pt-24">
           
@@ -58,7 +64,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-slate-900 dark:text-white">Location</h4>
-                  <p className="text-slate-500 dark:text-slate-400">Doha, Qatar</p>
+                  <p className="text-slate-500 dark:text-slate-400">Doha, Zone 24, Rawdat Al Khail</p>
                 </div>
               </div>
               
@@ -67,8 +73,8 @@ export default function Contact() {
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-slate-900 dark:text-white">Availability</h4>
-                  <p className="text-slate-500 dark:text-slate-400">24/7 Service Support</p>
+                  <h4 className="font-semibold text-slate-900 dark:text-white">Phone</h4>
+                  <p className="text-slate-500 dark:text-slate-400">6672 4009</p>
                 </div>
               </div>
             </div>

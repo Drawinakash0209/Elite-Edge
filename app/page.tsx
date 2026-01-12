@@ -8,6 +8,7 @@ import MarqueeBanner from "@/components/MarqueeBanner";
 import ParallaxBanner from "@/components/ParallaxBanner";
 
 import ImpactMetrics from "@/components/ImpactMetrics";
+import PreContactBanner from "@/components/PreContactBanner";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <Services />
       <ParallaxBanner />
       <WhyChooseUs />
+      <PreContactBanner />
       <Contact />
     </main>
   );

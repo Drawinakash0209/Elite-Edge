@@ -5,6 +5,8 @@ import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Building2, Users2, LineChart, Globe, ArrowUpRight, X, Check } from "lucide-react";
 import { GradientButton } from "@/components/ui/gradient-button";
+import { DirectionAwareHover } from "@/components/ui/direction-aware-hover";
+import { FloatingPaths } from "@/components/ui/background-paths";
 
 const serviceDetails = {
   facility: {
@@ -42,8 +44,12 @@ export default function Services() {
   }, []);
 
   return (
-    <section id="services" className="py-12 md:py-24 bg-slate-50 dark:bg-slate-900 transition-colors duration-300 relative">
-      <div className="container mx-auto px-6">
+    <section id="services" className="py-12 md:py-24 bg-slate-50 dark:bg-slate-900 transition-colors duration-300 relative overflow-hidden">
+      <div className="absolute inset-0 z-0 opacity-40 pointer-events-none">
+          <FloatingPaths position={1} />
+          <FloatingPaths position={-1} />
+      </div>
+      <div className="container mx-auto px-6 relative z-10">
         <div className="mb-20 flex flex-col md:flex-row items-end justify-between gap-6">
           <div className="md:w-2/3">
             <motion.span 
@@ -75,6 +81,33 @@ export default function Services() {
           >
             We provide a comprehensive ecosystem of services designed to elevate your operations to international standards.
           </motion.p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-20">
+          {[
+             {
+               title: "Facility Management",
+               image: "/Facility Management Services.jpg",
+             },
+             {
+               title: "Staffing Solutions",
+               image: "/Staffing Solutions.jpg",
+             },
+             {
+               title: "Operational Optimization",
+               image: "/Operational Optimization.jpg",
+             },
+             {
+               title: "Import & Export Services",
+               image: "/Import & Export Services.jpg",
+             }
+          ].map((service, idx) => (
+            <div key={idx} className="flex justify-center items-center">
+              <DirectionAwareHover imageUrl={service.image} className="w-full h-60 md:h-64 object-cover">
+                <p className="font-bold text-xl text-center">{service.title}</p>
+              </DirectionAwareHover>
+            </div>
+          ))}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
