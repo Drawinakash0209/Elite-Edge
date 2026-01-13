@@ -11,22 +11,22 @@ const features = [
   {
     title: "Our Vision",
     description: "To be the premier provider for management, service, and staffing solutions.",
-    image: "https://picsum.photos/seed/vision/600/400"
+    image: "/mission.jpeg"
   },
   {
     title: "Our Mission",
     description: "Empowering businesses through efficient, professional, international standard services.",
-    image: "https://picsum.photos/seed/mission/600/400"
+    image: "/vision.jpeg"
   },
   {
     title: "Client Engagement",
     description: "Building trusted, long-term strategic partnerships that prioritize your success.",
-    image: "https://picsum.photos/seed/client/600/400"
+    image: "/clientEngagement.jpeg"
   },
   {
     title: "Operational Excellence",
     description: "Precision and flexibility 24/7, ensuring seamless execution in every project.",
-    image: "https://picsum.photos/seed/ops/600/400"
+    image: "/operationalExcellence.jpeg"
   }
 ];
 

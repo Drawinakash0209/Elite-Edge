@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import QatarHero from "@/components/QatarHero";
 import Services from "@/components/Services";
 import WhyChooseUs from "@/components/WhyChooseUs";
 import Contact from "@/components/Contact";
@@ -18,6 +19,7 @@ export default function Home() {
       <ImpactMetrics />
       <MarqueeBanner />
       <About />
+      <QatarHero />
       <Services />
       <ParallaxBanner />
       <WhyChooseUs />
