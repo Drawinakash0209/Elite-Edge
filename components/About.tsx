@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -41,75 +40,88 @@ export default function About() {
   }, []);
 
   return (
-    <section id="about" className="py-12 md:py-24 bg-white dark:bg-slate-950 transition-colors duration-300 relative">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col lg:flex-row gap-16 items-start">
-          
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+    <section className="py-24 bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 relative overflow-hidden">
+      {/* Ambient Background Effects */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.1),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(147,51,234,0.1),transparent_50%)]" />
+      
+      <div className="container mx-auto px-4 relative z-10">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true }}
-            className="lg:w-1/2 sticky top-32"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 mb-6"
           >
-            <span className="text-cyan-600 dark:text-cyan-400 font-semibold tracking-wider text-sm uppercase mb-2 block">Who We Are</span>
-            <h2 className="text-4xl font-bold font-outfit text-slate-900 dark:text-white mb-6">
-              Bridging Global Expertise with <span className="text-cyan-600 dark:text-cyan-400">Local Excellence</span>
-            </h2>
-            <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-6">
-              Elite Edge is a management and service leader in Qatar built on a foundation of German engineering and structured processes.
-            </p>
-            <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed mb-8">
-              We separate ourselves by combining international service standards with deep local market insights, ensuring reliability and quality in every project we undertake. Innovation and precision are at the core of our operations.
-            </p>
-            
-            <motion.div whileTap={{ scale: 0.95 }} className="inline-block">
-              <GradientButton 
-                onClick={() => setIsModalOpen(true)}
-                className="group min-w-[160px]"
-              >
-                Learn More <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </GradientButton>
-            </motion.div>
+            <Zap className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+            <span className="text-sm font-medium text-blue-700 dark:text-blue-300">Who We Are</span>
           </motion.div>
+          
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-slate-900 via-blue-800 to-slate-900 dark:from-slate-100 dark:via-blue-400 dark:to-slate-100 bg-clip-text text-transparent">
+            Bridging Global Expertise with Local Excellence
+          </h2>
+          
+          <p className="text-lg text-slate-600 dark:text-slate-400 leading-relaxed mb-8">
+            Elite Edge is a management and service leader in Qatar built on a foundation of German engineering and structured processes.
+            <br /><br />
+            We separate ourselves by combining international service standards with deep local market insights, ensuring reliability and quality in every project we undertake. Innovation and precision are at the core of our operations.
+          </p>
+          
+          <GradientButton
+            onClick={() => setIsModalOpen(true)}
+            className="group min-w-[160px]"
+          >
+            Learn More
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </GradientButton>
+        </motion.div>
 
-          <div className="lg:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-4">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group relative h-64 rounded-3xl overflow-hidden cursor-pointer shadow-lg"
-              >
-                {/* Background Image */}
-                <div className="absolute inset-0">
-                  <img 
-                    src={feature.image} 
-                    alt={feature.title} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  {/* Default Dark Overlay for readability */}
-                  <div className="absolute inset-0 bg-slate-900/40 transition-opacity duration-300 group-hover:opacity-0" />
-                </div>
-
-                {/* Hover Overlay - Neon Blue */}
-                <div className="absolute inset-0 bg-cyan-600/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-sm" />
-
-                {/* Content */}
-                <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                  <h3 className="text-xl font-bold text-white mb-2 translate-y-2 group-hover:translate-y-0 transition-transform duration-300 font-outfit relative z-10">
-                    {feature.title}
-                  </h3>
-                  <p className="text-white/80 text-sm leading-relaxed opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 relative z-10">
-                    {feature.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
+        {/* Features Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {features.map((feature, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="group relative h-[280px] rounded-2xl overflow-hidden cursor-pointer border border-slate-200 dark:border-slate-800"
+            >
+              {/* Background Image */}
+              <div className="absolute inset-0 w-full h-full">
+                <Image
+                  src={feature.image}
+                  alt={feature.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  priority={index < 2}
+                />
+              </div>
+              
+              {/* Default Dark Overlay for readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-slate-900/30" />
+              
+              {/* Hover Overlay - Neon Blue */}
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-600/80 via-blue-600/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              {/* Content */}
+              <div className="absolute inset-0 p-6 flex flex-col justify-end">
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:translate-y-[-4px] transition-transform duration-300">
+                  {feature.title}
+                </h3>
+                <p className="text-sm text-slate-200 group-hover:text-white transition-colors duration-300">
+                  {feature.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
 
@@ -117,104 +129,130 @@ export default function About() {
       {mounted && createPortal(
         <AnimatePresence>
           {isModalOpen && (
-            <div className={`fixed inset-0 z-[100] flex ${isDesktop ? 'items-center justify-center p-4 sm:p-6' : 'items-end justify-center'}`}>
-              <motion.div 
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+            >
+              {/* Backdrop */}
+              <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setIsModalOpen(false)}
                 className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
               />
-              
-              <motion.div 
-                initial={isDesktop ? { opacity: 0, scale: 0.9, y: 20 } : { y: "100%" }}
-                animate={isDesktop ? { opacity: 1, scale: 1, y: 0 } : { y: 0 }}
-                exit={isDesktop ? { opacity: 0, scale: 0.9, y: 20 } : { y: "100%" }}
-                transition={isDesktop 
-                  ? { type: "spring", damping: 25, stiffness: 300 }
-                  : { type: "tween", ease: [0.32, 0.72, 0, 1], duration: 0.5 }
-                }
-                className={`relative bg-white dark:bg-slate-900 shadow-2xl overflow-hidden border border-cyan-100 dark:border-cyan-900 flex flex-col 
-                  ${isDesktop 
-                    ? 'w-full max-w-3xl rounded-[2rem] max-h-[90vh]' 
-                    : 'w-full rounded-t-[2rem] max-h-[85vh]'
-                  }`}
+
+              {/* Modal Content */}
+              <motion.div
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.95, opacity: 0 }}
+                className="relative bg-white dark:bg-slate-900 rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
               >
                 {/* Decorative Header Background */}
-                <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-r from-cyan-500 to-blue-600 opacity-10" />
-                <div className="absolute -top-10 -right-10 w-40 h-40 bg-blue-500/20 rounded-full blur-3xl z-0" />
+                <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-700 opacity-10 rounded-t-3xl" />
+                
+                {/* Close Button */}
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-500 dark:text-slate-400 z-50"
+                >
+                  <X className="w-6 h-6" />
+                </button>
 
-                <div className="relative p-8 md:p-10 z-10 overflow-y-auto custom-scrollbar">
-                  <button 
-                    onClick={() => setIsModalOpen(false)}
-                    className="absolute top-6 right-6 p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-500 dark:text-slate-400 z-50"
+                {/* Modal Body */}
+                <div className="p-8 md:p-12 relative">
+                  <motion.div
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.1 }}
                   >
-                    <X className="w-6 h-6" />
-                  </button>
-
-                  <h3 className="text-3xl font-bold font-outfit text-slate-900 dark:text-white mb-2">
-                    Our Story & Values
-                  </h3>
-                  <p className="text-cyan-600 dark:text-cyan-400 font-medium mb-8">
-                    Defining the future of facility management in Qatar
-                  </p>
-
-                  <div className="space-y-8">
-                    <div>
-                      <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
-                        <Award className="w-6 h-6 text-cyan-500" /> Excellence in Execution
-                      </h4>
-                      <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                        At Elite Edge, we believe that mediocrity is the enemy of growth. That's why we adhere to the strictest international standards in every service we provide, from simple maintenance tasks to complex logistical operations. Our team is rigorously trained to deliver nothing short of perfection.
-                      </p>
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 mb-6">
+                      <Award className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                      <span className="text-sm font-medium text-blue-700 dark:text-blue-300">Our Story & Values</span>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-6">
-                      <div className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-100 dark:border-slate-800">
-                        <h5 className="font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
-                          <Target className="w-5 h-5 text-blue-500" /> Strategic Vision
-                        </h5>
-                        <p className="text-sm text-slate-600 dark:text-slate-400">
-                          Aligning our services with your long-term business goals to create sustainable value.
-                        </p>
+                    <h3 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-slate-900 via-blue-800 to-slate-900 dark:from-slate-100 dark:via-blue-400 dark:to-slate-100 bg-clip-text text-transparent">
+                      Defining the future of facility management in Qatar
+                    </h3>
+
+                    <div className="space-y-8 mt-8">
+                      {/* Excellence Section */}
+                      <div>
+                        <div className="flex items-start gap-4 mb-4">
+                          <div className="p-3 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 text-white">
+                            <Target className="w-6 h-6" />
+                          </div>
+                          <div>
+                            <h4 className="text-xl font-semibold mb-2 text-slate-900 dark:text-slate-100">
+                              Excellence in Execution
+                            </h4>
+                            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                              At Elite Edge, we believe that mediocrity is the enemy of growth. That's why we adhere to the strictest international standards in every service we provide, from simple maintenance tasks to complex logistical operations. Our team is rigorously trained to deliver nothing short of perfection.
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                      <div className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-100 dark:border-slate-800">
-                        <h5 className="font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
-                          <Users className="w-5 h-5 text-indigo-500" /> People First
-                        </h5>
-                        <p className="text-sm text-slate-600 dark:text-slate-400">
-                          Investing in our workforce to ensure they are motivated, skilled, and ready to serve.
-                        </p>
+
+                      {/* Core Values Grid */}
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <div className="p-6 rounded-2xl bg-gradient-to-br from-blue-50 to-purple-50 dark:from-slate-800 dark:to-slate-800 border border-blue-100 dark:border-slate-700">
+                          <Target className="w-8 h-8 text-blue-600 dark:text-blue-400 mb-3" />
+                          <h5 className="font-semibold text-lg mb-2 text-slate-900 dark:text-slate-100">Strategic Vision</h5>
+                          <p className="text-sm text-slate-600 dark:text-slate-400">
+                            Aligning our services with your long-term business goals to create sustainable value.
+                          </p>
+                        </div>
+
+                        <div className="p-6 rounded-2xl bg-gradient-to-br from-purple-50 to-blue-50 dark:from-slate-800 dark:to-slate-800 border border-purple-100 dark:border-slate-700">
+                          <Users className="w-8 h-8 text-purple-600 dark:text-purple-400 mb-3" />
+                          <h5 className="font-semibold text-lg mb-2 text-slate-900 dark:text-slate-100">People First</h5>
+                          <p className="text-sm text-slate-600 dark:text-slate-400">
+                            Investing in our workforce to ensure they are motivated, skilled, and ready to serve.
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Why We Stand Out */}
+                      <div className="p-8 rounded-2xl bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-800 dark:to-slate-900 border border-slate-200 dark:border-slate-700">
+                        <h4 className="text-xl font-semibold mb-6 text-slate-900 dark:text-slate-100 flex items-center gap-3">
+                          <Zap className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                          Why We Stand Out
+                        </h4>
+                        <ul className="space-y-4">
+                          {["German-engineered process optimization", "24/7 Rapid response capability", "Transparent digital reporting", "Sustainability-focused practices"].map((item, i) => (
+                            <motion.li
+                              key={i}
+                              initial={{ opacity: 0, x: -20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: 0.2 + i * 0.1 }}
+                              className="flex items-start gap-3"
+                            >
+                              <div className="p-1 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 text-white mt-0.5">
+                                <Check className="w-4 h-4" />
+                              </div>
+                              <span className="text-slate-700 dark:text-slate-300">{item}</span>
+                            </motion.li>
+                          ))}
+                        </ul>
                       </div>
                     </div>
 
-                    <div>
-                      <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-4">Why We Stand Out</h4>
-                      <ul className="space-y-3">
-                        {["German-engineered process optimization", "24/7 Rapid response capability", "Transparent digital reporting", "Sustainability-focused practices"].map((item, i) => (
-                          <li key={i} className="flex items-center gap-3 text-slate-700 dark:text-slate-300">
-                            <div className="w-6 h-6 rounded-full bg-cyan-100 dark:bg-cyan-900/30 flex items-center justify-center text-cyan-600 dark:text-cyan-400 shrink-0">
-                                <Check className="w-3.5 h-3.5" />
-                            </div>
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div className="mt-10 pt-6 border-t border-slate-100 dark:border-slate-800 flex justify-end">
-                      <GradientButton 
-                        variant="variant"
+                    {/* CTA */}
+                    <div className="mt-10 flex justify-center">
+                      <GradientButton
                         onClick={() => setIsModalOpen(false)}
                         className="min-w-[140px]"
                       >
                         Close
                       </GradientButton>
-                  </div>
+                    </div>
+                  </motion.div>
                 </div>
               </motion.div>
-            </div>
+            </motion.div>
           )}
         </AnimatePresence>,
         document.body
