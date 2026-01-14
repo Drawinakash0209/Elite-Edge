@@ -172,6 +172,7 @@ export default function FloatingNav() {
                                             <option>Workforce & Staffing</option>
                                             <option>Project Management</option>
                                             <option>Import & Export</option>
+                                            <option>Cleaning & Maintenance</option>
                                             <option>Other</option>
                                         </select>
                                         <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
