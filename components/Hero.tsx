@@ -29,9 +29,6 @@ export default function Hero() {
             <span className="inline-block py-1.5 px-4 rounded-[4px] bg-[#C5A059] text-[#0A192F] text-xs font-bold tracking-[0.2em] uppercase shadow-lg">
               Elite Edge
             </span>
-            <span className="inline-block py-1.5 px-4 rounded-[4px] bg-slate-900/50 border border-[#C5A059]/30 text-xs font-semibold tracking-widest text-[#C5A059] backdrop-blur-sm">
-              ISO 9001:2015 Certified
-            </span>
           </div>
 
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-manrope tracking-tight mb-8 leading-[1.1] text-white">
