@@ -43,6 +43,17 @@ export default function Services() {
     setMounted(true);
   }, []);
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   return (
     <section id="services" className="py-12 md:py-24 bg-slate-50 dark:bg-slate-900 transition-colors duration-300 relative overflow-hidden">
       <div className="absolute inset-0 z-0 opacity-40 pointer-events-none">
@@ -231,7 +242,7 @@ export default function Services() {
       {mounted && createPortal(
         <AnimatePresence>
           {selectedService && (
-            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+            <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center p-0 sm:p-6">
               <motion.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -241,10 +252,11 @@ export default function Services() {
               />
               
               <motion.div 
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                className="relative w-full max-w-3xl bg-white dark:bg-slate-900 rounded-[2rem] shadow-2xl overflow-hidden border border-cyan-100 dark:border-cyan-900"
+                initial={isMobile ? { y: "100%" } : { opacity: 0, scale: 0.9, y: 20 }}
+                animate={isMobile ? { y: 0 } : { opacity: 1, scale: 1, y: 0 }}
+                exit={isMobile ? { y: "100%" } : { opacity: 0, scale: 0.9, y: 20 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                className="relative w-full max-w-3xl bg-white dark:bg-slate-900 rounded-t-[2rem] sm:rounded-[2rem] shadow-2xl overflow-hidden border-t sm:border border-cyan-100 dark:border-cyan-900 max-h-[90vh] overflow-y-auto"
               >
                 {/* Decorative Header Background */}
                 <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-r from-cyan-500 to-blue-600 opacity-10" />

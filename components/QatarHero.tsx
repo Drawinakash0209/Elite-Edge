@@ -62,12 +62,6 @@ const QatarHero = () => {
                 </div>
               </div>
 
-              <div className='mt-12 flex justify-center'>
-                <button className='group px-8 py-3 bg-white text-black rounded-full font-bold flex items-center gap-2 hover:bg-blue-50 transition-all transform hover:scale-105'>
-                  Discover More 
-                  <ArrowRight className='w-5 h-5 group-hover:translate-x-1 transition-transform' />
-                </button>
-              </div>
           </div>
         </div>
       </ScrollExpandMedia>

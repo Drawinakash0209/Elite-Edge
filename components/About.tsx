@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Award, Target, Users, Zap, X, Check, ArrowRight } from "lucide-react";
 import { GradientButton } from "@/components/ui/gradient-button";
+import { useMediaQuery } from "@/hooks/use-media-query";
 import Image from "next/image";
 
 const features = [
@@ -33,6 +34,7 @@ const features = [
 export default function About() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const isDesktop = useMediaQuery("(min-width: 768px)");
 
   useEffect(() => {
     setMounted(true);
@@ -61,12 +63,14 @@ export default function About() {
               We separate ourselves by combining international service standards with deep local market insights, ensuring reliability and quality in every project we undertake. Innovation and precision are at the core of our operations.
             </p>
             
-            <GradientButton 
-              onClick={() => setIsModalOpen(true)}
-              className="group min-w-[160px]"
-            >
-              Learn More <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </GradientButton>
+            <motion.div whileTap={{ scale: 0.95 }} className="inline-block">
+              <GradientButton 
+                onClick={() => setIsModalOpen(true)}
+                className="group min-w-[160px]"
+              >
+                Learn More <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </GradientButton>
+            </motion.div>
           </motion.div>
 
           <div className="lg:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -113,7 +117,7 @@ export default function About() {
       {mounted && createPortal(
         <AnimatePresence>
           {isModalOpen && (
-            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+            <div className={`fixed inset-0 z-[100] flex ${isDesktop ? 'items-center justify-center p-4 sm:p-6' : 'items-end justify-center'}`}>
               <motion.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -123,10 +127,18 @@ export default function About() {
               />
               
               <motion.div 
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                className="relative w-full max-w-3xl bg-white dark:bg-slate-900 rounded-[2rem] shadow-2xl overflow-hidden border border-cyan-100 dark:border-cyan-900 flex flex-col max-h-[90vh]"
+                initial={isDesktop ? { opacity: 0, scale: 0.9, y: 20 } : { y: "100%" }}
+                animate={isDesktop ? { opacity: 1, scale: 1, y: 0 } : { y: 0 }}
+                exit={isDesktop ? { opacity: 0, scale: 0.9, y: 20 } : { y: "100%" }}
+                transition={isDesktop 
+                  ? { type: "spring", damping: 25, stiffness: 300 }
+                  : { type: "tween", ease: [0.32, 0.72, 0, 1], duration: 0.5 }
+                }
+                className={`relative bg-white dark:bg-slate-900 shadow-2xl overflow-hidden border border-cyan-100 dark:border-cyan-900 flex flex-col 
+                  ${isDesktop 
+                    ? 'w-full max-w-3xl rounded-[2rem] max-h-[90vh]' 
+                    : 'w-full rounded-t-[2rem] max-h-[85vh]'
+                  }`}
               >
                 {/* Decorative Header Background */}
                 <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-r from-cyan-500 to-blue-600 opacity-10" />
