@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, Loader2 } from "lucide-react";
 import { useState } from "react";
+import Image from "next/image";
 import { submitToWeb3Forms } from "@/utils/web3forms";
 import { GradientButton } from "@/components/ui/gradient-button";
 import { FloatingPaths } from "@/components/ui/background-paths";
@@ -151,8 +152,26 @@ export default function Contact() {
 
         </div>
         
-        <div className="mt-24 pt-8 border-t border-slate-100 dark:border-slate-800 text-center text-slate-400 dark:text-slate-600 text-sm transition-colors duration-300">
-          <p>&copy; {new Date().getFullYear()} Elite Edge for Facility Management Services W.L.L. All rights reserved.</p>
+        <div className="mt-24 pt-8 border-t border-slate-100 dark:border-slate-800 text-center transition-colors duration-300">
+          {/* Logo */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="flex justify-center mb-6"
+          >
+            <div className="relative w-20 h-20 md:w-24 md:h-24 opacity-90 hover:opacity-100 transition-opacity duration-300">
+              <Image
+                src="/logo1.png"
+                alt="Elite Edge Logo"
+                fill
+                className="object-contain drop-shadow-lg"
+              />
+            </div>
+          </motion.div>
+
+          <p className="text-slate-400 dark:text-slate-600 text-sm">&copy; {new Date().getFullYear()} Elite Edge for Facility Management Services W.L.L. All rights reserved.</p>
         </div>
       </div>
     </section>
