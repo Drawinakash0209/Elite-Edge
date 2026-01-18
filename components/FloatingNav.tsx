@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Home, Info, Briefcase, Mail, Phone, Moon, Sun, MonitorPlay, X, Check, ArrowRight, ChevronDown } from "lucide-react";
+import { Home, Info, Briefcase, Mail, Phone, Moon, Sun, MonitorPlay, X, Check, ArrowRight, ChevronDown, MessageSquareText } from "lucide-react";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
@@ -101,9 +101,10 @@ export default function FloatingNav() {
             
             <button 
             onClick={() => setIsQuoteOpen(true)}
-            className="hidden md:block px-5 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg font-semibold text-sm transition-all shadow-lg shadow-slate-900/20"
+            className="px-3 py-2 md:px-5 md:py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg font-semibold text-sm transition-all shadow-lg shadow-slate-900/20 flex items-center gap-2"
           >
-            Get Quote
+            <span className="md:hidden"><MessageSquareText className="w-4 h-4" /></span>
+            <span className="hidden md:block">Get Quote</span>
           </button>
         </motion.div>
         </div>
