@@ -9,7 +9,7 @@ export default function FloatingLogoButton() {
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay: 1, duration: 0.5 }}
-      className="fixed top-6 left-6 z-50"
+      className="fixed bottom-8 right-8 z-50"
     >
       <motion.button
         whileHover={{ scale: 1.1 }}
