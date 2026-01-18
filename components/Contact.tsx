@@ -166,7 +166,7 @@ export default function Contact() {
                 src="/logo1.png"
                 alt="Elite Edge Logo"
                 fill
-                className="object-contain drop-shadow-lg"
+                className="object-contain drop-shadow-lg dark:invert"
               />
             </div>
           </motion.div>
